@@ -9,9 +9,6 @@ Oscar Juarez - 17027
 Paul Belches - 17088 */
 
 main:
-	@@ Mensaje de bienvenida
-	ldr r0,= MensajeBienvenida
-	bl puts
 
 	@utilizando la biblioteca GPIO (gpio0_2.s)
 	bl GetGpioAddress @solo se llama una vez
@@ -35,8 +32,14 @@ main:
 	mov r1,#0
 	bl SetGpio
 
+	@@ Cargar el contador
+	ldr r8, = Contador
+	ldr r8,[r8]
 ingreso:
-	@@ Mostrar Tablero
+	@@ Mensaje de bienvenida
+	ldr r0,= MensajeBienvenida
+	bl puts
+	@@ Se pide la opcion del menu
 	ldr r0,= MEntrada
 	bl puts
 	ldr r0,= Entrada
@@ -45,7 +48,12 @@ ingreso:
 	@@ Revisar que sean numeros lo que se ingreso
 	cmp r0,#0
 	beq Num_Mal
+	ldr r1,=Ingreso
+	ldr r1,[r1]
+	cmp r1,#1 @@verifica el ingreso
+	beq botones
 
+botones:
 loop:
 	/* Se lee el puerto 20 */
 	mov r0,#20
@@ -55,7 +63,7 @@ loop:
 	/* Si el boton se apacha, procede con el codigo del programa */
 	@Si el boton esta en alto (1), fue presionado y valida el contador
 	teq r0,#0
-	@@bne leds
+	addne r8,#250
 	
 	/* Se lee el puerto 21 */
 	mov r0,#21
@@ -65,7 +73,7 @@ loop:
 	/* Si el boton se apacha, procede con el codigo del programa */
 	@Si el boton esta en alto (1), fue presionado y valida el contador
 	teq r0,#0
-	@@bne leds
+	addne r8,#-250
 
 	/* De no ser asi, corre en un ciclo infinito */
 	b loop
