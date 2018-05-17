@@ -5,7 +5,7 @@
 /* Universidad del Valle de Guatemala
 Organizacion de Computadoras y Assembler
 Fecha: 14/07/18
-Oscar Juarez - 17027
+Rodrigo Morales - 17027
 Paul Belches - 17088 */
 
 main:
