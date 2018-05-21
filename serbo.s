@@ -52,7 +52,23 @@ ingreso:
 	ldr r1,[r1]
 	cmp r1,#1 @@verifica el ingreso
 	beq botones
+	/*Verifica si es por software*/
+	cmp r1,#2
+	beq software
 
+software:	
+	ldr r0,= MensajeSoftware
+	bl puts
+	ldr r0,= Entrada
+	ldr r1,= Ingreso
+	bl scanf
+	@@ Revisar que sean numeros lo que se ingreso
+	cmp r0,#0
+	beq Num_Mal
+	ldr r1,=Ingreso
+	ldr r1,[r1]
+	mov r0,r1
+	b delay
 botones:
 loop:
 	/* Se lee el puerto 20 */
@@ -104,3 +120,5 @@ Contador:
 	.word 1000
 MensajeBienvenida:
 	.asciz "Ingrese el numero de la opcion que desea:  \n1. Manejar el motor por botones  \n2.Ingresar la posicion del motor \n3.Salir"
+MensajeSoftware:
+	.asciz "Ingrese el numero de la movimiento que desea que desea"

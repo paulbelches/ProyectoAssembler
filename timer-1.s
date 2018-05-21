@@ -19,6 +19,7 @@ f_sec:   .asciz "Seconds:\t\t%15.10f\n"
 start:   .word 0
 cycles:  .word 0
 delayReg:.word  
+delayRegQuarter: .word
 
 .text
 .align 2
@@ -26,12 +27,19 @@ delayReg:.word
 @ ---------------------------
 @ Delay function
 @ Input: r0 delay counter val
-@ ---------------------------
+@ ---------------------------s
 delay:
 	mov r10,r0
+	ldr r9, = delayRegQuarter
+	ldr r9,[r9]
+	ldr r12, = delayReg
+	ldr r12,[r12]
 	//Linea para multiplicar por taza
 	
-	/*Falta averiguar*/
+	/*r10 es n, r9 es 250 y r12 es 1000 para completar la formula 1000+(250n)*/
+	MUL r10, r9,r10
+	ADD r10, r10,r12
+	
 	
 	//Enciende el pulso
 	mov r0, #21
