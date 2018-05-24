@@ -96,18 +96,7 @@ loop:
 	b motor
 	/* De no ser asi, corre en un ciclo infinito */
 	b loop
-motor:
-	mov r9,r0
-	//Enciende el pulso
-	mov r0, #21
-	mov r1,#1
-	bl SetGpio 
-	mov r0,r9
-	bl better_sleep
-//Apaga el pulso
-	mov r0, #21
-	mov r1,#0
-	bl SetGpio 
+
 
 fin:	
 	@@ r0, r3 <- 0 como sennal de no error al sistema operativo
