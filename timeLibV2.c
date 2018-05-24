@@ -1,8 +1,4 @@
-// Universidad del Valle de Guatemala
-// Taller de Assembler 2016
-// C library to mannage time from ASM
-// Christian Medina Armas
-// AGO-2016
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -20,9 +16,9 @@ int getCPS(void){
 
 //CODIGO TOMADO DE : http://www.informit.com/articles/article.aspx?p=23618&seqNum=11
 //HECHO POR : Mark L. Mitchell and Jeffrey Oldham (OCT 12,2001)
-//ADAPTOADOR POR: Jonnathan Juarez
+//ADAPTADO POR: Rodrigo Morales y Paul Belches
 
-int better_sleep (int sleep_time)
+int gotoSleep (int sleep_time)
 {
 	 struct timespec tv;
 	 /* Construct the timespec from the number of whole seconds... */
