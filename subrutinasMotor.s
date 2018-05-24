@@ -1,9 +1,9 @@
 .global motor
 
-@@reciben en r0: la poscion actual
+@@reciben en r0: la poscion deseada a donde se quiere mover el motor
 motor:
 	push {lr}
-	@@comr con las posibles posiciones
+	@@Se chequea cual es la posicion que se desea
 	cmp r0,#0 
 	beq option6
 	cmp r0, #1 
@@ -20,6 +20,7 @@ motor:
 	beq option0 
 
 	option0:
+		@Contador para el tiempo que se mantiene el pulso
 		mov r6,#50
 		servoMove0:
 			sub r6,r6,#1
@@ -46,6 +47,7 @@ motor:
 			pop {r6}
 		b servoMove0
 	option1:
+		@Contador para el tiempo que se mantiene el pulso
 		mov r6,#50
 		servoMove1:
 			sub r6,r6,#1
@@ -74,6 +76,7 @@ motor:
 
 
 	option2:
+		@Contador para el tiempo que se mantiene el pulso
 		mov r6,#50
 		servoMove2:
 			sub r6,r6,#1
@@ -101,6 +104,7 @@ motor:
 		b servoMove2
 
 	option3:
+		@Contador para el tiempo que se mantiene el pulso
 		mov r6,#50
 		servoMove3:
 			sub r6,r6,#1
@@ -153,6 +157,7 @@ motor:
 			pop {r6}
 		b servoMove4
 	option5:
+		@Contador para el tiempo que se mantiene el pulso
 		mov r6,#50
 		servoMove5:
 			sub r6,r6,#1
@@ -179,6 +184,7 @@ motor:
 			pop {r6}
 		b servoMove5
 	option6:
+		@Contador para el tiempo que se mantiene el pulso
 		mov r6,#50
 		servoMove6:
 			sub r6,r6,#1
